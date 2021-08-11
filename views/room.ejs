@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+<%- include('./extends/header.ejs') -%>
+
+        <div class="message-box">
+            <div class="message-list-container">
+                <ul class="" id="message-list"></ul>
+            </div>
+            <form>
+                <input type="text" name="message" id="message">
+                <input type="submit" value="send" id="message-btn">
+            </form>
+        </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../public/javascripts/room.js"></script>
+
+<%- include('./extends/footer.ejs') -%>

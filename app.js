@@ -7,7 +7,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var roomsRouter = require('./routes/rooms');
 
-var app = express();
+// var app = express();
+
+const app = require("express")();
+
+const httpServer = require("http").createServer(app);
+const options = { /* ... */ };
+const io = require("socket.io")(httpServer, options);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -17,7 +23,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/rooms', roomsRouter);
@@ -38,6 +44,16 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000)
+io.on('connection', socket => {
+    console.log("New user connected")
+    //handle the new message event
+    socket.on('new_message', data => {
+        console.log("new message")
+        io.sockets.emit('receive_message', {message: data.message})
+    })
+
+})
+
+httpServer.listen(3000)
 
 module.exports = app;
