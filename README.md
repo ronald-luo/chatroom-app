@@ -1,5 +1,5 @@
 # chatroom-app
 
-Try it out here [Here](https://chatroom-app.ronald-luo.repl.co/rooms)
+Try it out [here](https://replit.com/@ronald-luo/chatroom-app)
 
 Check out some other projects [Here](https://www.ronald-luo.com/100-websites/)
